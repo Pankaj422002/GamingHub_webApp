@@ -1,3 +1,5 @@
+import { getUserInfo } from "../localStorage";
+
 const HomeScreen = {
     after_render: ()=>{
 
@@ -13,6 +15,7 @@ const HomeScreen = {
 
     },
     render: ()=>{
+        const data = getUserInfo();
         return `
         <nav class="navbar" data-navbar>
                 <ul class="navbar-list">
@@ -30,7 +33,11 @@ const HomeScreen = {
                     </li>
 
                     <li class="navbar-item">
-                        <a href="/#/profile" class="navbar-link" data-nav-link>contact</a>
+                        ${data.name
+                            ? `<a href="/#/profile" class="navbar-link" data-nav-link>contact</a>`
+                            : `<a href="#home" class="navbar-link" data-nav-link>contact</a>`
+                        }
+                        
                     </li>
 
                 </ul>
